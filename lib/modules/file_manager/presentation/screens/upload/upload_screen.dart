@@ -1,4 +1,3 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:desafio/core/utils/styles.dart';
 import 'package:desafio/shared/button_component.dart';
 import 'package:desafio/modules/home/presentation/screens/widgets/widgets.dart';
@@ -8,16 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
-
-  final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
+class UploadScreen extends StatelessWidget {
+  const UploadScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
-    final mGlobalProvider = Provider.of<GlobalProvider>(context, listen: false);
+    final usernameController = TextEditingController();
+    final passwordController = TextEditingController();
+    final mGlobalProvider = Provider.of<GlobalProvider>(context, listen: true);
 
     return Scaffold(
         backgroundColor: CustomStyle.colorWhite,
@@ -26,7 +24,7 @@ class LoginScreen extends StatelessWidget {
           backgroundColor: CustomStyle.colorWhite,
           centerTitle: true,
           title: Text(
-            'Login',
+            'Subir Imagen',
             style: SoraStyle.regular.copyWith(
                 color: CustomStyle.colorFontDefault,
                 fontSize: 20,
@@ -52,13 +50,6 @@ class LoginScreen extends StatelessWidget {
                       decoration: const InputDecoration(labelText: 'Usuario'),
                     ),
                     const SizedBox(height: 20),
-                    TextFormField(
-                        controller: passwordController,
-                        decoration:
-                            const InputDecoration(labelText: 'Contraseña'),
-                        keyboardType: TextInputType.visiblePassword,
-                        obscureText: true),
-                    const SizedBox(height: 20),
                     ButtonComponent(
                       height: 60,
                       color: CustomStyle.colorPrimary,
@@ -67,26 +58,6 @@ class LoginScreen extends StatelessWidget {
                         style: CustomStyle.textStyleWhiteBtn,
                       ),
                       callback: () {
-                        bool statusResponseLogin =
-                            mGlobalProvider.verificationLogin(
-                                usernameController.text,
-                                passwordController.text);
-                        if (statusResponseLogin) {
-                          ScaffoldMessenger.of(context)
-                            ..hideCurrentSnackBar()
-                            ..showSnackBar(snackBarCustom(
-                                'Se logeó correctamente',
-                                'Felicitaciones',
-                                ContentType.success));
-                          context.push('/upload-screen');
-                        } else {
-                          ScaffoldMessenger.of(context)
-                            ..hideCurrentSnackBar()
-                            ..showSnackBar(snackBarCustom(
-                                'Hubo un error !!',
-                                'Usuario o contraseña incorrectamente.',
-                                ContentType.failure));
-                        }
                       },
                     ),
                   ],

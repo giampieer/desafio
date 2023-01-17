@@ -47,7 +47,7 @@ class ButtonComponent extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius ?? 8.0),
           color: color,
           child: MaterialButton(
-            padding: EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             minWidth: MediaQuery.of(context).size.width,
             onPressed: enabled! ? callback : null,
             child: Align(alignment: Alignment.center, child: child),
