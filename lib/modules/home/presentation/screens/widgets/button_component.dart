@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BLButton extends StatelessWidget {
+class ButtonComponent extends StatelessWidget {
   final Color? color;
   final VoidCallback? callback;
   final double? height;
@@ -15,7 +15,7 @@ class BLButton extends StatelessWidget {
   final BoxDecoration? decoration;
   final double? borderRadius;
 
-  const BLButton(
+  const ButtonComponent(
       {super.key,
       this.color,
       this.callback,

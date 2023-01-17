@@ -1,8 +1,10 @@
 import 'package:desafio/core/utils/styles.dart';
-import 'package:desafio/modules/home/presentation/screens/widgets/bl_button.dart';
+import 'package:desafio/modules/home/presentation/screens/widgets/button_component.dart';
+import 'package:desafio/modules/home/presentation/screens/widgets/widgets.dart';
 import 'package:desafio/provider/global_provider.dart';
 import 'package:desafio/theme/custom_style.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -11,10 +13,9 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
-    final userController = TextEditingController();
+    final usernameController = TextEditingController();
     final passwordController = TextEditingController();
-    final mPosGlobalProvider =
-        Provider.of<GlobalProvider>(context, listen: true);
+    final mGlobalProvider = Provider.of<GlobalProvider>(context, listen: true);
 
     return Scaffold(
         backgroundColor: CustomStyle.colorWhite,
@@ -45,24 +46,35 @@ class LoginScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextFormField(
-                      controller: userController,
+                      controller: usernameController,
                       decoration: const InputDecoration(labelText: 'Usuario'),
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
-                      controller: passwordController,
-                      decoration: const InputDecoration(labelText: 'Contraseña'),
-                      keyboardType: TextInputType.visiblePassword,
-                    ),
+                        controller: passwordController,
+                        decoration:
+                            const InputDecoration(labelText: 'Contraseña'),
+                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: true),
                     const SizedBox(height: 20),
-                    BLButton(
+                    ButtonComponent(
                       height: 60,
                       color: CustomStyle.colorPrimary,
                       child: Text(
                         'Ingresar',
                         style: CustomStyle.textStyleWhiteBtn,
                       ),
-                      callback: () {},
+                      callback: () {
+                        mGlobalProvider.verificationLogin(
+                            usernameController.text, passwordController.text);
+                        if (mGlobalProvider.statusResponseLogin) {
+                          context.go('');
+                        } else {
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(snackBarCustom());
+                        }
+                      },
                     ),
                   ],
                 )),
