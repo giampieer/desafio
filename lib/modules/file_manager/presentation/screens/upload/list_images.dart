@@ -25,6 +25,7 @@ class ListImages extends StatelessWidget {
                   child: Container(
                       padding: const EdgeInsets.all(3),
                       child: ImageComponent(
+                        boxfit: BoxFit.fill,
                         url: mGlobalProvider.listImages[index].url ?? '',
                         width: size.width * 1.5,
                         height: size.width * 1.5,

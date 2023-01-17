@@ -5,19 +5,21 @@ class ImageComponent extends StatelessWidget {
   final String url;
   double width;
   double height;
+  BoxFit boxfit;
 
   ImageComponent(
       {super.key,
       required this.url,
       required this.width,
-      required this.height});
+      required this.height,
+      required this.boxfit});
 
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       height: height,
       width: width,
-      fit: BoxFit.fill,
+      fit: boxfit,
       imageUrl: url,
       placeholder: (context, url) => Image.asset(
           height: height,
