@@ -1,3 +1,4 @@
+import 'package:desafio/modules/file_manager/presentation/screens/gallery/gallery_screen.dart';
 import 'package:desafio/modules/file_manager/presentation/screens/upload/upload_screen.dart';
 import 'package:desafio/modules/home/presentation/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,12 @@ class RouteGenerator {
         GoRoute(
           path: '/upload-screen',
           builder: (BuildContext context, GoRouterState state) =>
-              const UploadScreen(),
+              UploadScreen(),
+        ),
+        GoRoute(
+          path: '/gallery-screen',
+          builder: (BuildContext context, GoRouterState state) =>
+              GalleryScreen(),
         ),
       ],
       redirect: (BuildContext context, GoRouterState state) {
@@ -24,6 +30,9 @@ class RouteGenerator {
             redirect = false;
             break;
           case '/upload-screen':
+            redirect = false;
+            break;
+          case '/gallery-screen':
             redirect = false;
             break;
           default:
