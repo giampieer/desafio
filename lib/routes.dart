@@ -1,3 +1,4 @@
+import 'package:desafio/modules/file_manager/presentation/screens/gallery/full_image.dart';
 import 'package:desafio/modules/file_manager/presentation/screens/gallery/gallery_screen.dart';
 import 'package:desafio/modules/file_manager/presentation/screens/upload/upload_screen.dart';
 import 'package:desafio/modules/home/presentation/screens/login/login_screen.dart';
@@ -21,6 +22,14 @@ class RouteGenerator {
           builder: (BuildContext context, GoRouterState state) =>
               GalleryScreen(),
         ),
+        GoRoute(
+          path: '/full-image-screen',
+          builder: (BuildContext context, GoRouterState state) =>
+              FullImageScreen(url: state.extra as String),
+          redirect: (BuildContext context, GoRouterState state) {
+            return null;
+          },
+        ),
       ],
       redirect: (BuildContext context, GoRouterState state) {
         bool redirect = false;
@@ -33,6 +42,9 @@ class RouteGenerator {
             redirect = false;
             break;
           case '/gallery-screen':
+            redirect = false;
+            break;
+          case '/full-image-screen':
             redirect = false;
             break;
           default:

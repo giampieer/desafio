@@ -3,6 +3,7 @@ import 'package:desafio/modules/file_manager/presentation/screens/widgets/image_
 import 'package:desafio/provider/global_provider.dart';
 import 'package:desafio/theme/custom_style.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class GalleryScreen extends StatelessWidget {
@@ -11,7 +12,9 @@ class GalleryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mGlobalProvider = Provider.of<GlobalProvider>(context, listen: true);
-    var size = MediaQuery.of(context).size / 10;
+    var size = MediaQuery
+        .of(context)
+        .size / 10;
     return Scaffold(
       backgroundColor: CustomStyle.colorWhite,
       appBar: AppBar(
@@ -40,13 +43,16 @@ class GalleryScreen extends StatelessWidget {
             ),
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    context.push('/full-image-screen',
+                        extra: mGlobalProvider.listImages[index].url ?? '');
+                  },
                   child: ImageComponent(
                     url: mGlobalProvider.listImages[index].url ?? '',
                     width: size.width * 4,
                     height: size.width * 4,
                     boxFit:
-                        mGlobalProvider.statusGrid ? BoxFit.fill : BoxFit.cover,
+                    mGlobalProvider.statusGrid ? BoxFit.fill : BoxFit.cover,
                   ));
             },
           )),
