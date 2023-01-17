@@ -12,7 +12,6 @@ class UploadScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
     return Scaffold(
         backgroundColor: CustomStyle.colorWhite,
         appBar: AppBar(
@@ -30,12 +29,10 @@ class UploadScreen extends StatelessWidget {
           elevation: 0,
         ),
         body: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 30),
-          child: Form(
-            key: formKey,
-            child: SingleChildScrollView(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+          padding: const EdgeInsets.all(10),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 FormUpload(),
@@ -56,7 +53,7 @@ class UploadScreen extends StatelessWidget {
                   },
                 ),
               ],
-            )),
+            ),
           ),
         ));
   }

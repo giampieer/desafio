@@ -19,6 +19,7 @@ class ImageSelected extends StatelessWidget {
                   .first
                   .url ??
               ''),
+      boxFit: BoxFit.fill,
       height: size.height * 4,
       width: size.width * 10,
     );

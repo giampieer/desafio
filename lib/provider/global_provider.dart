@@ -27,11 +27,24 @@ class GlobalProvider extends ChangeNotifier {
 
   void removedImage(int index) {
     _listImages.removeAt(index);
+    if (_listImages.isNotEmpty) {
+      _listImages.first.selected = true;
+    }
     notifyListeners();
   }
+
   void selectedImage(int index) {
     _listImages.map((e) => e.selected = false).toList();
     _listImages[index].selected = true;
+    notifyListeners();
+  }
+
+  bool _statusGrid = true;
+
+  bool get statusGrid => _statusGrid;
+
+  void updateGrid(bool status) {
+    _statusGrid = status;
     notifyListeners();
   }
 }

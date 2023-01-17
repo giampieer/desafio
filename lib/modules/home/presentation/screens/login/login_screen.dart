@@ -36,7 +36,7 @@ class LoginScreen extends StatelessWidget {
           elevation: 0,
         ),
         body: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 30),
+          padding: const EdgeInsets.all(10),
           child: Form(
             key: formKey,
             child: SingleChildScrollView(
