@@ -4,7 +4,6 @@ import 'package:desafio/shared/button_component.dart';
 import 'package:desafio/provider/global_provider.dart';
 import 'package:desafio/theme/custom_style.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class FormUpload extends StatelessWidget {
@@ -36,8 +35,15 @@ class FormUpload extends StatelessWidget {
                 ..showSnackBar(snackBarCustom(
                     'Llegó al limite', 'Información', ContentType.warning));
             } else {
-              mGlobalProvider.addedImage(filesController.text);
-              filesController.clear();
+              if (filesController.text == '') {
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(snackBarCustom(
+                      'Campo vacio', 'Información', ContentType.warning));
+              } else {
+                mGlobalProvider.addedImage(filesController.text);
+                filesController.clear();
+              }
             }
           },
         ),

@@ -10,8 +10,7 @@ class ListImages extends StatelessWidget {
   Widget build(BuildContext context) {
     final mGlobalProvider = Provider.of<GlobalProvider>(context, listen: true);
     var size = MediaQuery.of(context).size / 10;
-    return Container(
-        color: Colors.red,
+    return SizedBox(
         height: size.width * 1.5,
         width: size.width * 10,
         child: ListView.builder(
