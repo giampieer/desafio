@@ -45,7 +45,7 @@ class GalleryScreen extends StatelessWidget {
                     url: mGlobalProvider.listImages[index].url ?? '',
                     width: size.width * 4,
                     height: size.width * 4,
-                    boxfit:
+                    boxFit:
                         mGlobalProvider.statusGrid ? BoxFit.fill : BoxFit.cover,
                   ));
             },

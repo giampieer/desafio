@@ -27,6 +27,9 @@ class GlobalProvider extends ChangeNotifier {
 
   void removedImage(int index) {
     _listImages.removeAt(index);
+    if (_listImages.isNotEmpty) {
+      _listImages.first.selected = true;
+    }
     notifyListeners();
   }
 

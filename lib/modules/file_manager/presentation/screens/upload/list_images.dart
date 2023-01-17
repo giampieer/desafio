@@ -22,14 +22,32 @@ class ListImages extends StatelessWidget {
                   onTap: () {
                     mGlobalProvider.selectedImage(index);
                   },
-                  child: Container(
-                      padding: const EdgeInsets.all(3),
-                      child: ImageComponent(
-                        boxfit: BoxFit.fill,
-                        url: mGlobalProvider.listImages[index].url ?? '',
-                        width: size.width * 1.5,
-                        height: size.width * 1.5,
-                      )));
+                  child: Stack(
+                    alignment: Alignment.topRight,
+                    children: [
+                      Container(
+                          padding: const EdgeInsets.all(3),
+                          child: ImageComponent(
+                            boxFit: BoxFit.fill,
+                            url: mGlobalProvider.listImages[index].url ?? '',
+                            width: size.width * 1.5,
+                            height: size.width * 1.5,
+                          )),
+                      InkWell(
+                          onTap: () {
+                            mGlobalProvider.removedImage(index);
+                          },
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0)),
+                              color: Colors.grey,
+                            ),
+                            child:
+                                const Icon(Icons.delete, color: Colors.black),
+                          ))
+                    ],
+                  ));
             }));
   }
 }
