@@ -13,7 +13,7 @@ class RouteGenerator {
         GoRoute(
           path: '/upload-screen',
           builder: (BuildContext context, GoRouterState state) =>
-              const UploadScreen(),
+              UploadScreen(),
         ),
       ],
       redirect: (BuildContext context, GoRouterState state) {

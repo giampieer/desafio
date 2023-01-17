@@ -11,12 +11,12 @@ import 'package:provider/provider.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
+  final formKey = GlobalKey<FormState>();
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
     final mGlobalProvider = Provider.of<GlobalProvider>(context, listen: false);
 
     return Scaffold(
@@ -55,7 +55,7 @@ class LoginScreen extends StatelessWidget {
                     TextFormField(
                         controller: passwordController,
                         decoration:
-                            const InputDecoration(labelText: 'Contraseña'),
+                            const InputDecoration(labelText: 'Password'),
                         keyboardType: TextInputType.visiblePassword,
                         obscureText: true),
                     const SizedBox(height: 20),
@@ -63,7 +63,7 @@ class LoginScreen extends StatelessWidget {
                       height: 60,
                       color: CustomStyle.colorPrimary,
                       child: Text(
-                        'Ingresar',
+                        'Entrar',
                         style: CustomStyle.textStyleWhiteBtn,
                       ),
                       callback: () {

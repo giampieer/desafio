@@ -1,3 +1,4 @@
+import 'package:desafio/modules/file_manager/domain/dtos/image_dto.dart';
 import 'package:flutter/material.dart';
 
 class GlobalProvider extends ChangeNotifier {
@@ -8,5 +9,19 @@ class GlobalProvider extends ChangeNotifier {
       statusResponseLogin = true;
     }
     return statusResponseLogin;
+  }
+
+  final List<ImageDto> _listImages = [];
+
+  List<ImageDto> get listImages => _listImages;
+
+  void addedImage(String image) {
+    _listImages.add(ImageDto(url: image, selected: false));
+    notifyListeners();
+  }
+
+  void removedImage(int index) {
+    _listImages.removeAt(index);
+    notifyListeners();
   }
 }
