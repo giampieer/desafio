@@ -1,38 +1,34 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ImageComponent extends StatelessWidget {
-  final Size size;
   final String url;
   double width;
   double height;
 
   ImageComponent(
-      {super.key, required this.size,
+      {super.key,
       required this.url,
       required this.width,
       required this.height});
 
   @override
   Widget build(BuildContext context) {
-    return FadeInImage(
+    return CachedNetworkImage(
       height: height,
       width: width,
       fit: BoxFit.fill,
-      image: NetworkImage(url),
-      placeholder: Image.asset(
-        'assets/images/rectangle-no-image.png',
-        height: height,
-        width: width,
-        fit: BoxFit.fill,
-      ).image,
-      imageErrorBuilder: (_, __, ___) {
-        return Image.asset(
-          'assets/images/rectangle-no-image.png',
+      imageUrl: url,
+      placeholder: (context, url) => Image.asset(
           height: height,
           width: width,
-          fit: BoxFit.fill,
-        ); //this is what will fill the Container in case error happened
-      },
+          'assets/images/rectangle-no-image.png',
+          fit: BoxFit.fill),
+      errorWidget: (context, url, error) => Image.asset(
+          height: height,
+          width: width,
+          'assets/images/rectangle-no-image.png',
+          fit: BoxFit.fill),
     );
   }
 }

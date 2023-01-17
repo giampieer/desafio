@@ -5,7 +5,8 @@ class GlobalProvider extends ChangeNotifier {
   // validacion login
   bool verificationLogin(String username, String password) {
     bool statusResponseLogin = false;
-    if (username == 'usuario' && password == '123456') {
+    //if (username == 'usuario' && password == '123456') {
+    if (username == '' && password == '') {
       statusResponseLogin = true;
     }
     return statusResponseLogin;
@@ -16,12 +17,21 @@ class GlobalProvider extends ChangeNotifier {
   List<ImageDto> get listImages => _listImages;
 
   void addedImage(String image) {
-    _listImages.add(ImageDto(url: image, selected: false));
+    if (_listImages.isEmpty) {
+      _listImages.add(ImageDto(url: image, selected: true));
+    } else {
+      _listImages.add(ImageDto(url: image, selected: false));
+    }
     notifyListeners();
   }
 
   void removedImage(int index) {
     _listImages.removeAt(index);
+    notifyListeners();
+  }
+  void selectedImage(int index) {
+    _listImages.map((e) => e.selected = false).toList();
+    _listImages[index].selected = true;
     notifyListeners();
   }
 }
